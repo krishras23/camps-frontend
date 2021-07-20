@@ -15,9 +15,9 @@ class PostRequest extends React.Component {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: 'camp2', description: 'hello', MIN_AGE:5, MAX_AGE:8, price_per_week :13 })
+            body: JSON.stringify({ name: 'camp4', description: 'hello', MIN_AGE:5, MAX_AGE:8, price_per_week :13 })
         };
-        fetch('http://127.0.0.1:5000/add_camp', requestOptions)
+        fetch('http://localhost:5000/add_camp', requestOptions)
             .then(response => response.json())
             .then(data => this.setState({ postId: data.id }));
     }

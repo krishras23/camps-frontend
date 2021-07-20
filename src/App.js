@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import "./App.css";
 import { PostRequest } from './PostRequest';
 import { GetRequest } from './GetRequest';
+import { DeleteRequest } from './DeleteRequest';
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
           <button onClick = {handleCreateCamp}> Create Camp </button>
           <h1>react</h1>
           <PostRequest />
+          <DeleteRequest/>
 
 
         </div>

@@ -10,7 +10,7 @@ class GetRequest extends React.Component {
     }
 
     componentDidMount() {
-        fetch('https://cors-anywhere.herokuapp.com/http://127.0.0.1:5000/')
+        fetch('')
             .then(response => response.json())
             .then(data => console.log(data));
     };
