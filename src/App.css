@@ -23,6 +23,7 @@
   width: 300px;
   margin-top: 10px;
   height: 60px;
+  background-color: lightgreen;
 }
 
 .form button:hover {

@@ -1,4 +1,5 @@
 import React from 'react';
+import price from './App';
 
 
 class PostRequest extends React.Component {
@@ -15,7 +16,7 @@ class PostRequest extends React.Component {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: 'camp4', description: 'hello', MIN_AGE:5, MAX_AGE:8, price_per_week :13 })
+            body: JSON.stringify({ name: 'theone', description: 'hello', MIN_AGE:5, MAX_AGE:8, price_per_week :43 })
         };
         fetch('http://localhost:5000/add_camp', requestOptions)
             .then(response => response.json())

@@ -5,6 +5,8 @@ import { GetRequest } from './GetRequest';
 import { DeleteRequest } from './DeleteRequest';
 import { PutRequestPrice } from './PutRequestPrice';
 import { PutRequestAges } from './PutRequestAges';
+import axios from 'axios';
+
 
 
 function App() {
@@ -21,11 +23,18 @@ function App() {
   const [price, setPrice] = useState(0)
 
 
+  const AddCamp = () => {
+    axios.post("http://localhost:5000/add_camp",
+    {name: name, description: description, MIN_AGE: min_age, MAX_AGE: max_age, price_per_week: price})
+  }
+
+
   function handleCreateCamp(e){
     const name = CreateCampRef.current.value
     console.log(name)
     CreateCampRef.current.value = null
   }
+
 
 
   function handleDeleteCamp(e){
@@ -68,14 +77,8 @@ function App() {
           <label> Camp Price Per Week </label>
           <input ref={CreateCampRef} type = "number" name = "CampPrice"
           onChange={(event) =>{setPrice(event.target.value)}}/>
-          <button onClick = {handleCreateCamp}> Create Camp </button>
-          <h1>react</h1>
-          <PostRequest />
-          <DeleteRequest/>
-          <GetRequest/>
-          <PutRequestPrice/>
-          <PutRequestAges/>
 
+          <button onClick = {AddCamp}> Add Camp </button>
 
         </div>
 
