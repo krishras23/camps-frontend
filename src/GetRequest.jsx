@@ -10,7 +10,7 @@ class GetRequest extends React.Component {
     }
 
     componentDidMount() {
-        fetch('')
+        fetch('http://localhost:5000/show_camps')
             .then(response => response.json())
             .then(data => console.log(data));
     };

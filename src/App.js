@@ -3,6 +3,8 @@ import "./App.css";
 import { PostRequest } from './PostRequest';
 import { GetRequest } from './GetRequest';
 import { DeleteRequest } from './DeleteRequest';
+import { PutRequestPrice } from './PutRequestPrice';
+import { PutRequestAges } from './PutRequestAges';
 
 
 function App() {
@@ -70,6 +72,9 @@ function App() {
           <h1>react</h1>
           <PostRequest />
           <DeleteRequest/>
+          <GetRequest/>
+          <PutRequestPrice/>
+          <PutRequestAges/>
 
 
         </div>
