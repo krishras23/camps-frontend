@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import "./App.css";
 import { PostRequest } from './PostRequest';
 import { GetRequest } from './GetRequest';
@@ -14,22 +14,37 @@ function App() {
   const DeleteCampRef = useRef()
   const UpdateCampAgesRef = useRef()
   const UpdateCampPriceRef = useRef()
-  
-  
+
+
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [min_age, setMinAge] = useState(0)
   const [max_age, setMaxAge] = useState(0)
   const [price, setPrice] = useState(0)
+  const [CampID, setCampID] = useState(0)
+
 
 
   const AddCamp = () => {
     axios.post("http://localhost:5000/add_camp",
-    {name: name, description: description, MIN_AGE: min_age, MAX_AGE: max_age, price_per_week: price})
+      { name: name, description: description, MIN_AGE: min_age, MAX_AGE: max_age, price_per_week: price })
+      .then(() => { console.log("success") })
+  };
+
+
+
+  const DeleteCamp = () => {
+    axios.delete('http://localhost:5000/delete_camp', {
+      headers: {
+        mode: 'no-cors'
+      },
+      data: {
+        CampID: CampID
+      }
+    });
   }
 
-
-  function handleCreateCamp(e){
+  function handleCreateCamp(e) {
     const name = CreateCampRef.current.value
     console.log(name)
     CreateCampRef.current.value = null
@@ -37,20 +52,20 @@ function App() {
 
 
 
-  function handleDeleteCamp(e){
+  function handleDeleteCamp(e) {
     const name = DeleteCampRef.current.value
     console.log(name)
     DeleteCampRef.current.value = null
   }
 
 
-  function handleUpdateCampAges(e){
+  function handleUpdateCampAges(e) {
     const name = UpdateCampAgesRef.current.value
     console.log(name)
     UpdateCampAgesRef.current.value = null
   }
 
-  function handleUpdateCampPrice(e){
+  function handleUpdateCampPrice(e) {
     const name = UpdateCampPriceRef.current.value
     console.log(name)
     UpdateCampPriceRef.current.value = null
@@ -59,28 +74,34 @@ function App() {
 
   return (
     <div className="App">
-      <h1> Admin Dashboard </h1>
-      
-        <div className="form">
-          <label> Camp Name </label>
-          <input ref={CreateCampRef} type = "text" name = "CampName"
-          onChange={(event) =>{setName(event.target.value)}}/>
-          <label> Camp Description </label>
-          <input ref={CreateCampRef} type = "text" name = "CampDescription" 
-          onChange={(event) =>{setDescription(event.target.value)}}/>
-          <label> Camp Minimum Age </label>
-          <input ref={CreateCampRef} type = "number" name = "CampMIN_AGE" 
-          onChange={(event) =>{setMinAge(event.target.value)}}/>
-          <label> Camp Maximum Age </label>
-          <input ref={CreateCampRef} type = "number" name = "CampMAX_AGE" 
-          onChange={(event) =>{setMaxAge(event.target.value)}}/>
-          <label> Camp Price Per Week </label>
-          <input ref={CreateCampRef} type = "number" name = "CampPrice"
-          onChange={(event) =>{setPrice(event.target.value)}}/>
+      <h1> <center>Admin Dashboard</center> </h1>
 
-          <button onClick = {AddCamp}> Add Camp </button>
+      <div className="form">
+        <label> Camp Name </label>
+        <input ref={CreateCampRef} type="text" name="CampName"
+          onChange={(event) => { setName(event.target.value) }} />
+        <label> Camp Description </label>
+        <input ref={CreateCampRef} type="text" name="CampDescription"
+          onChange={(event) => { setDescription(event.target.value) }} />
+        <label> Camp Minimum Age </label>
+        <input ref={CreateCampRef} type="number" name="CampMIN_AGE"
+          onChange={(event) => { setMinAge(event.target.value) }} />
+        <label> Camp Maximum Age </label>
+        <input ref={CreateCampRef} type="number" name="CampMAX_AGE"
+          onChange={(event) => { setMaxAge(event.target.value) }} />
+        <label> Camp Price Per Week </label>
+        <input ref={CreateCampRef} type="number" name="CampPrice"
+          onChange={(event) => { setPrice(event.target.value) }} />
 
-        </div>
+        <button onClick={AddCamp}> Add Camp </button>
+      </div>
+      <div className="Delete">
+        <label> Delete Camp from ID </label>
+        <input ref={DeleteCampRef} type="number" name="CampID"
+          onChange={(event) => { setCampID(event.target.value) }} />
+        <button onClick={DeleteCamp}> Delete Camp </button>
+
+      </div>
 
     </div>
 
