@@ -21,6 +21,7 @@ function App() {
   const [new_MIN_AGE, setnew_MIN_AGE] = useState(0)
   const [new_MAX_AGE, setnew_MAX_AGE] = useState(0)
   const [CampList, setCampList] = useState([])
+  
 
 
 
@@ -28,7 +29,7 @@ function App() {
   const AddCamp = () => {
     axios.post("http://localhost:5000/add_camp",
       { name: name, description: description, MIN_AGE: min_age, MAX_AGE: max_age, price_per_week: price })
-      .then(() => { console.log("success") })
+      .then(() => { window.alert("Camp Added Successfully") })
   };
 
 
@@ -46,8 +47,12 @@ function App() {
 
   const ShowCamps = () => {
     axios.get("http://localhost:5000/show_camps",)
-      .then((response) => { setCampList(response.data)})
+      .then((response) => { 
+        console.log(response);
+        response.data.forEach((x, i) => console.log("item: "+ x));
+      })
   };
+
 
 
 
@@ -147,7 +152,8 @@ function App() {
 
 
         <div className = "ShowCamps">
-        <button onClick={ShowCamps}> Show All Camps  </button> 
+        <button onClick={ShowCamps}> Show All Camps  </button>;
+
         </div>
     </div>
     </div>
