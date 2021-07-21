@@ -1,10 +1,5 @@
 import React, { useState, useRef } from 'react';
 import "./App.css";
-import { PostRequest } from './PostRequest';
-import { GetRequest } from './GetRequest';
-import { DeleteRequest } from './DeleteRequest';
-import { PutRequestPrice } from './PutRequestPrice';
-import { PutRequestAges } from './PutRequestAges';
 import axios from 'axios';
 
 
@@ -22,6 +17,10 @@ function App() {
   const [max_age, setMaxAge] = useState(0)
   const [price, setPrice] = useState(0)
   const [CampID, setCampID] = useState(0)
+  const [new_price, setnew_price] = useState(0)
+  const [new_MIN_AGE, setnew_MIN_AGE] = useState(0)
+  const [new_MAX_AGE, setnew_MAX_AGE] = useState(0)
+
 
 
 
@@ -32,17 +31,27 @@ function App() {
   };
 
 
+  const UpdateCampPrice = () => {
+    axios.put("http://localhost:5000/update_camp_price",
+      { CampID: CampID, new_price: new_price})
+      .then(() => { console.log("success") })
+  };
+
+  const UpdateCampAges = () => {
+    axios.put("http://localhost:5000/update_camp_ages",
+      { CampID: CampID, new_MIN_AGE: new_MIN_AGE, new_MAX_AGE: new_MAX_AGE})
+      .then(() => { console.log("success") })
+  };
+
+
 
   const DeleteCamp = () => {
     axios.delete('http://localhost:5000/delete_camp', {
-      headers: {
-        mode: 'no-cors'
-      },
-      data: {
-        CampID: CampID
-      }
-    });
-  }
+      headers: {mode: 'no-cors'},
+      data: {CampID: CampID}})
+      .then(() => { console.log("success") })
+  };
+
 
   function handleCreateCamp(e) {
     const name = CreateCampRef.current.value
@@ -96,14 +105,39 @@ function App() {
         <button onClick={AddCamp}> Add Camp </button>
       </div>
       <div className="Delete">
-        <label> Delete Camp from ID </label>
+      <h1>Delete Camp Price from ID</h1>
+        <label> Camp ID </label>
         <input ref={DeleteCampRef} type="number" name="CampID"
           onChange={(event) => { setCampID(event.target.value) }} />
         <button onClick={DeleteCamp}> Delete Camp </button>
 
       </div>
-
+      <div className="UpdatePrice">
+        <h1>Update Camp Price from ID</h1>
+        <label> Camp ID </label>
+        <input ref={UpdateCampPriceRef} type="number" name="CampID"
+          onChange={(event) => { setCampID(event.target.value) }} />
+        <label> New Price </label>
+        <input ref={UpdateCampPriceRef} type="number" name="NewPrice"
+          onChange={(event) => { setnew_price(event.target.value) }} />
+        <button onClick={UpdateCampPrice}> Update Camp Price </button>
+        
+        <div className = "UpdateAges">
+        <h1>Update Camp Ages from ID</h1>
+        <label> Camp ID </label>
+        <input ref={UpdateCampAgesRef} type="number" name="CampID"
+          onChange={(event) => { setCampID(event.target.value) }} />
+        <label> New Minimum Age </label>
+        <input ref={UpdateCampAges} type="number" name="NewMIN"
+          onChange={(event) => { setnew_MIN_AGE(event.target.value) }} />
+        <label> New Maximum Age </label>
+        <input ref={UpdateCampAges} type="number" name="NewMAX"
+          onChange={(event) => { setnew_MAX_AGE(event.target.value) }} />
+        <button onClick={UpdateCampAges}> Update Camp Ages </button> 
+        </div>
     </div>
+    </div>
+      
 
 
   );
