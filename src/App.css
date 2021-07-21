@@ -33,7 +33,7 @@
 .Delete {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   justify-content: center;
   background-color: aqua;
 }
@@ -54,4 +54,69 @@
   height: 60px;
   background-color: lightgreen;
   padding-left: 10px;
+}
+
+.Delete button:hover {
+  cursor: pointer;
+}
+
+
+.UpdatePrice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+}
+
+
+.UpdatePrice input {
+  width: 150px;
+  height: 60px;
+  margin: 10px;
+  font-size: 20px;
+
+}
+
+
+.UpdatePrice button {
+  width: 150px;
+  margin-top: 10px;
+  height: 60px;
+  background-color: lightgreen;
+  padding-left: 10px;
+}
+
+.UpdatePrice button:hover {
+  cursor: pointer;
+}
+
+.UpdateAges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+}
+
+
+.UpdateAges input {
+  width: 150px;
+  height: 60px;
+  margin: 10px;
+  font-size: 20px;
+
+}
+
+
+.UpdateAges button {
+  width: 150px;
+  margin-top: 10px;
+  height: 60px;
+  background-color: lightgreen;
+  padding-left: 10px;
+}
+
+.UpdateAges button:hover {
+  cursor: pointer;
 }
