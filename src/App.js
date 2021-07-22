@@ -23,6 +23,15 @@ function App() {
   const [CampList, setCampList] = useState([])
   
 
+  const people = [
+    { name: 'chris', age: '23', country: 'brazil', position: 'CEO' },
+    { name: 'Juan', age: '45', country: 'mexico', position: 'dev' },
+    { name: 'joe', age: '45', country: 'mexico', position: 'dev' }
+  ];
+
+  
+
+
 
 
 
@@ -152,8 +161,18 @@ function App() {
 
 
         <div className = "ShowCamps">
-        <button onClick={ShowCamps}> Show All Camps  </button>;
-
+        <button onClick={ShowCamps}> Show All Camps  </button>
+        <div>
+        {people.map((person) => {
+    return (
+        <div className = "employee">
+          <h3>Name: {person.name}</h3>
+          <h3>Age: {person.age}</h3>
+          <h3>Country: {person.country}</h3>
+          <h3>Position: {person.position}</h3>
+        </div>
+  )})}
+</div>
         </div>
     </div>
     </div>
