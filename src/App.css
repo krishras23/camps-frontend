@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: aqua;
+  background-color: Aquamarine;
 }
 
 .form input {
@@ -40,7 +40,7 @@
 
 
 .Delete input {
-  width: 150px;
+  width: 300px;
   height: 60px;
   margin: 10px;
   font-size: 20px;
@@ -49,7 +49,7 @@
 
 
 .Delete button {
-  width: 150px;
+  width: 300px;
   margin-top: 10px;
   height: 60px;
   background-color: lightgreen;
@@ -71,7 +71,7 @@
 
 
 .UpdatePrice input {
-  width: 150px;
+  width: 300px;
   height: 60px;
   margin: 10px;
   font-size: 20px;
@@ -80,7 +80,7 @@
 
 
 .UpdatePrice button {
-  width: 150px;
+  width: 300px;
   margin-top: 10px;
   height: 60px;
   background-color: lightgreen;
@@ -101,7 +101,7 @@
 
 
 .UpdateAges input {
-  width: 150px;
+  width: 300px;
   height: 60px;
   margin: 10px;
   font-size: 20px;
@@ -110,7 +110,7 @@
 
 
 .UpdateAges button {
-  width: 150px;
+  width: 300px;
   margin-top: 10px;
   height: 60px;
   background-color: lightgreen;
@@ -121,16 +121,25 @@
   cursor: pointer;
 }
 
-.employee {
-  width: 700px;
+.Camps {
+  width: auto;
   height: auto;
   border: 1px solid black;
   margin: 10px;
   display: flex;
   padding: 10px;
-  font-family: 'Courier New', Courier, monospace;
+  color: darkblue;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.employee h3 {
+.Camps h3 {
   margin: 20px;
+}
+
+
+.ShowCamps {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }

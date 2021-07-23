@@ -36,9 +36,24 @@ function App() {
 
 
   const AddCamp = () => {
-    axios.post("http://localhost:5000/add_camp",
-      { name: name, description: description, MIN_AGE: min_age, MAX_AGE: max_age, price_per_week: price })
-      .then(() => { window.alert("Camp Added Successfully") })
+    axios.post("http://localhost:5000/add_camp", {
+      name: name,
+      description: description,
+      MIN_AGE: min_age,
+      MAX_AGE: max_age,
+      price_per_week: price,
+    }).then(() => {
+      setCampList([
+        ...CampList,
+        {
+          name: name,
+          description: description,
+          MIN_AGE: min_age,
+          MAX_AGE: max_age,
+          price_per_week: price,
+        },
+      ]);
+    });
   };
 
 
@@ -54,14 +69,12 @@ function App() {
       .then(() => { console.log("success") })
   };
 
-  const ShowCamps = () => {
-    axios.get("http://localhost:5000/show_camps",)
-      .then((response) => { 
-        console.log(response);
-        response.data.forEach((x, i) => console.log("item: "+ x));
-      })
-  };
 
+  const ShowCamps = () => {
+    axios.get("http://localhost:3008/all_camps").then((response) => {
+      setCampList(response.data);
+    });
+  };
 
 
 
@@ -126,7 +139,7 @@ function App() {
         <button onClick={AddCamp}> Add Camp </button>
       </div>
       <div className="Delete">
-      <h2>Delete Camp Price from ID</h2>
+      <h2>Delete Camp</h2>
         <label> Camp ID </label>
         <input ref={DeleteCampRef} type="number" name="CampID"
           onChange={(event) => { setCampID(event.target.value) }} />
@@ -134,7 +147,7 @@ function App() {
 
       </div>
       <div className="UpdatePrice">
-        <h2>Update Camp Price from ID</h2>
+        <h2>Update Camp Price</h2>
         <label> Camp ID </label>
         <input ref={UpdateCampPriceRef} type="number" name="CampID"
           onChange={(event) => { setCampID(event.target.value) }} />
@@ -146,7 +159,7 @@ function App() {
 
         
         <div className = "UpdateAges">
-        <h2>Update Camp Ages from ID</h2>
+        <h2>Update Camp Ages</h2>
         <label> Camp ID </label>
         <input ref={UpdateCampAgesRef} type="number" name="CampID"
           onChange={(event) => { setCampID(event.target.value) }} />
@@ -160,24 +173,23 @@ function App() {
         </div>
 
 
-        <div className = "ShowCamps">
+    <div className = "ShowCamps">
         <button onClick={ShowCamps}> Show All Camps  </button>
-        <div>
-        {people.map((person) => {
-    return (
-        <div className = "employee">
-          <h3>Name: {person.name}</h3>
-          <h3>Age: {person.age}</h3>
-          <h3>Country: {person.country}</h3>
-          <h3>Position: {person.position}</h3>
+        {CampList.map(val => (
+          <div className="Camps">
+
+            <h3>Camp Name: {val.name}</h3>
+            <h3>Description: {val.description}</h3>
+            <h3>Minimum Age: {val.MIN_AGE}</h3>
+            <h3>Maximum Age: {val.MAX_AGE}</h3>
+            <h3>Price Per Week: {val.price_per_week}$</h3>
         </div>
-  )})}
-</div>
-        </div>
+      ))}
+
+    </div>
     </div>
     </div>
       
-
 
   );
 }
