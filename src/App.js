@@ -177,11 +177,11 @@ function App() {
         <button onClick={ShowCamps}> Show All Camps  </button>
         {CampList.map(val => (
           <div className="Camps">
-
+            <h3>Camp ID: {val.CampID}</h3>
             <h3>Camp Name: {val.name}</h3>
             <h3>Description: {val.description}</h3>
-            <h3>Minimum Age: {val.MIN_AGE}</h3>
-            <h3>Maximum Age: {val.MAX_AGE}</h3>
+            <h3>Min Age: {val.MIN_AGE} years</h3>
+            <h3>Max Age: {val.MAX_AGE} years</h3>
             <h3>Price Per Week: {val.price_per_week}$</h3>
         </div>
       ))}
